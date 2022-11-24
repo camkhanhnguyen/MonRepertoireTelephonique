@@ -32,10 +32,17 @@ namespace MonRepertoireTelephonique
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMonReTe));
             this.gpbContacts = new System.Windows.Forms.GroupBox();
             this.lstContacts = new System.Windows.Forms.ListBox();
+            this.btnModifier = new System.Windows.Forms.Button();
+            this.btnSupprimer = new System.Windows.Forms.Button();
+            this.btnNouveauContact = new System.Windows.Forms.Button();
             this.gpbAjouterContact = new System.Windows.Forms.GroupBox();
+            this.lblAdresse = new System.Windows.Forms.Label();
+            this.txtAdresse = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.rdbProfessionnel = new System.Windows.Forms.RadioButton();
+            this.btnAjouter = new System.Windows.Forms.Button();
+            this.btnAnnuler = new System.Windows.Forms.Button();
             this.rdbAmis = new System.Windows.Forms.RadioButton();
             this.rdbFamille = new System.Windows.Forms.RadioButton();
             this.lblTel = new System.Windows.Forms.Label();
@@ -45,14 +52,7 @@ namespace MonRepertoireTelephonique
             this.txtNom = new System.Windows.Forms.TextBox();
             this.lblNom = new System.Windows.Forms.Label();
             this.lblPhoto = new System.Windows.Forms.Label();
-            this.btnAjouter = new System.Windows.Forms.Button();
-            this.btnAnnuler = new System.Windows.Forms.Button();
             this.ptbPhoto = new System.Windows.Forms.PictureBox();
-            this.btnModifier = new System.Windows.Forms.Button();
-            this.btnSupprimer = new System.Windows.Forms.Button();
-            this.btnNouveauContact = new System.Windows.Forms.Button();
-            this.txtAdresse = new System.Windows.Forms.TextBox();
-            this.lblAdresse = new System.Windows.Forms.Label();
             this.gpbContacts.SuspendLayout();
             this.gpbAjouterContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbPhoto)).BeginInit();
@@ -73,6 +73,7 @@ namespace MonRepertoireTelephonique
             // 
             // lstContacts
             // 
+            this.lstContacts.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstContacts.FormattingEnabled = true;
             this.lstContacts.HorizontalScrollbar = true;
             this.lstContacts.ItemHeight = 16;
@@ -82,6 +83,37 @@ namespace MonRepertoireTelephonique
             this.lstContacts.Size = new System.Drawing.Size(646, 564);
             this.lstContacts.TabIndex = 4;
             this.lstContacts.Click += new System.EventHandler(this.lstContacts_Click);
+            this.lstContacts.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstContacts_DrawItem);
+            // 
+            // btnModifier
+            // 
+            this.btnModifier.Image = ((System.Drawing.Image)(resources.GetObject("btnModifier.Image")));
+            this.btnModifier.Location = new System.Drawing.Point(516, 600);
+            this.btnModifier.Name = "btnModifier";
+            this.btnModifier.Size = new System.Drawing.Size(54, 50);
+            this.btnModifier.TabIndex = 2;
+            this.btnModifier.UseVisualStyleBackColor = true;
+            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
+            // 
+            // btnSupprimer
+            // 
+            this.btnSupprimer.Image = ((System.Drawing.Image)(resources.GetObject("btnSupprimer.Image")));
+            this.btnSupprimer.Location = new System.Drawing.Point(598, 600);
+            this.btnSupprimer.Name = "btnSupprimer";
+            this.btnSupprimer.Size = new System.Drawing.Size(54, 50);
+            this.btnSupprimer.TabIndex = 3;
+            this.btnSupprimer.UseVisualStyleBackColor = true;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
+            // 
+            // btnNouveauContact
+            // 
+            this.btnNouveauContact.Image = ((System.Drawing.Image)(resources.GetObject("btnNouveauContact.Image")));
+            this.btnNouveauContact.Location = new System.Drawing.Point(432, 601);
+            this.btnNouveauContact.Name = "btnNouveauContact";
+            this.btnNouveauContact.Size = new System.Drawing.Size(52, 49);
+            this.btnNouveauContact.TabIndex = 4;
+            this.btnNouveauContact.UseVisualStyleBackColor = true;
+            this.btnNouveauContact.Click += new System.EventHandler(this.btnNouveauContact_Click);
             // 
             // gpbAjouterContact
             // 
@@ -107,6 +139,25 @@ namespace MonRepertoireTelephonique
             this.gpbAjouterContact.TabStop = false;
             this.gpbAjouterContact.Text = "Ajouter Contact";
             // 
+            // lblAdresse
+            // 
+            this.lblAdresse.AutoSize = true;
+            this.lblAdresse.Location = new System.Drawing.Point(15, 299);
+            this.lblAdresse.Name = "lblAdresse";
+            this.lblAdresse.Size = new System.Drawing.Size(60, 17);
+            this.lblAdresse.TabIndex = 14;
+            this.lblAdresse.Text = "Adresse";
+            this.lblAdresse.Visible = false;
+            // 
+            // txtAdresse
+            // 
+            this.txtAdresse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAdresse.Location = new System.Drawing.Point(75, 293);
+            this.txtAdresse.Name = "txtAdresse";
+            this.txtAdresse.Size = new System.Drawing.Size(265, 27);
+            this.txtAdresse.TabIndex = 13;
+            this.txtAdresse.Visible = false;
+            // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
@@ -129,21 +180,45 @@ namespace MonRepertoireTelephonique
             // rdbProfessionnel
             // 
             this.rdbProfessionnel.AutoSize = true;
-            this.rdbProfessionnel.Location = new System.Drawing.Point(225, 37);
+            this.rdbProfessionnel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbProfessionnel.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.rdbProfessionnel.Location = new System.Drawing.Point(212, 37);
             this.rdbProfessionnel.Name = "rdbProfessionnel";
-            this.rdbProfessionnel.Size = new System.Drawing.Size(115, 21);
+            this.rdbProfessionnel.Size = new System.Drawing.Size(128, 21);
             this.rdbProfessionnel.TabIndex = 10;
             this.rdbProfessionnel.TabStop = true;
             this.rdbProfessionnel.Text = "Professionnel";
             this.rdbProfessionnel.UseVisualStyleBackColor = true;
             this.rdbProfessionnel.CheckedChanged += new System.EventHandler(this.rdbProfessionnel_CheckedChanged_1);
             // 
+            // btnAjouter
+            // 
+            this.btnAjouter.Image = global::MonRepertoireTelephonique.Properties.Resources.ajouter;
+            this.btnAjouter.Location = new System.Drawing.Point(211, 338);
+            this.btnAjouter.Name = "btnAjouter";
+            this.btnAjouter.Size = new System.Drawing.Size(54, 50);
+            this.btnAjouter.TabIndex = 0;
+            this.btnAjouter.UseVisualStyleBackColor = true;
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
+            // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.Image = global::MonRepertoireTelephonique.Properties.Resources.annuler;
+            this.btnAnnuler.Location = new System.Drawing.Point(286, 338);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(54, 50);
+            this.btnAnnuler.TabIndex = 1;
+            this.btnAnnuler.UseVisualStyleBackColor = true;
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
+            // 
             // rdbAmis
             // 
             this.rdbAmis.AutoSize = true;
+            this.rdbAmis.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbAmis.ForeColor = System.Drawing.Color.SeaGreen;
             this.rdbAmis.Location = new System.Drawing.Point(123, 37);
             this.rdbAmis.Name = "rdbAmis";
-            this.rdbAmis.Size = new System.Drawing.Size(59, 21);
+            this.rdbAmis.Size = new System.Drawing.Size(63, 21);
             this.rdbAmis.TabIndex = 9;
             this.rdbAmis.TabStop = true;
             this.rdbAmis.Text = "Amis";
@@ -153,9 +228,11 @@ namespace MonRepertoireTelephonique
             // rdbFamille
             // 
             this.rdbFamille.AutoSize = true;
+            this.rdbFamille.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbFamille.ForeColor = System.Drawing.Color.Purple;
             this.rdbFamille.Location = new System.Drawing.Point(18, 37);
             this.rdbFamille.Name = "rdbFamille";
-            this.rdbFamille.Size = new System.Drawing.Size(73, 21);
+            this.rdbFamille.Size = new System.Drawing.Size(80, 21);
             this.rdbFamille.TabIndex = 8;
             this.rdbFamille.TabStop = true;
             this.rdbFamille.Text = "Famille";
@@ -225,26 +302,6 @@ namespace MonRepertoireTelephonique
             this.lblPhoto.Text = "Choisir une photo";
             this.lblPhoto.Click += new System.EventHandler(this.lblPhoto_Click);
             // 
-            // btnAjouter
-            // 
-            this.btnAjouter.Image = global::MonRepertoireTelephonique.Properties.Resources.ajouter;
-            this.btnAjouter.Location = new System.Drawing.Point(211, 338);
-            this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(54, 50);
-            this.btnAjouter.TabIndex = 0;
-            this.btnAjouter.UseVisualStyleBackColor = true;
-            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.Image = global::MonRepertoireTelephonique.Properties.Resources.annuler;
-            this.btnAnnuler.Location = new System.Drawing.Point(286, 338);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(54, 50);
-            this.btnAnnuler.TabIndex = 1;
-            this.btnAnnuler.UseVisualStyleBackColor = true;
-            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
-            // 
             // ptbPhoto
             // 
             this.ptbPhoto.Location = new System.Drawing.Point(26, 25);
@@ -253,55 +310,6 @@ namespace MonRepertoireTelephonique
             this.ptbPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbPhoto.TabIndex = 6;
             this.ptbPhoto.TabStop = false;
-            // 
-            // btnModifier
-            // 
-            this.btnModifier.Image = ((System.Drawing.Image)(resources.GetObject("btnModifier.Image")));
-            this.btnModifier.Location = new System.Drawing.Point(516, 600);
-            this.btnModifier.Name = "btnModifier";
-            this.btnModifier.Size = new System.Drawing.Size(54, 50);
-            this.btnModifier.TabIndex = 2;
-            this.btnModifier.UseVisualStyleBackColor = true;
-            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
-            // 
-            // btnSupprimer
-            // 
-            this.btnSupprimer.Image = ((System.Drawing.Image)(resources.GetObject("btnSupprimer.Image")));
-            this.btnSupprimer.Location = new System.Drawing.Point(598, 600);
-            this.btnSupprimer.Name = "btnSupprimer";
-            this.btnSupprimer.Size = new System.Drawing.Size(54, 50);
-            this.btnSupprimer.TabIndex = 3;
-            this.btnSupprimer.UseVisualStyleBackColor = true;
-            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
-            // 
-            // btnNouveauContact
-            // 
-            this.btnNouveauContact.Image = ((System.Drawing.Image)(resources.GetObject("btnNouveauContact.Image")));
-            this.btnNouveauContact.Location = new System.Drawing.Point(432, 601);
-            this.btnNouveauContact.Name = "btnNouveauContact";
-            this.btnNouveauContact.Size = new System.Drawing.Size(52, 49);
-            this.btnNouveauContact.TabIndex = 4;
-            this.btnNouveauContact.UseVisualStyleBackColor = true;
-            this.btnNouveauContact.Click += new System.EventHandler(this.btnNouveauContact_Click);
-            // 
-            // txtAdresse
-            // 
-            this.txtAdresse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdresse.Location = new System.Drawing.Point(75, 293);
-            this.txtAdresse.Name = "txtAdresse";
-            this.txtAdresse.Size = new System.Drawing.Size(265, 27);
-            this.txtAdresse.TabIndex = 13;
-            this.txtAdresse.Visible = false;
-            // 
-            // lblAdresse
-            // 
-            this.lblAdresse.AutoSize = true;
-            this.lblAdresse.Location = new System.Drawing.Point(15, 299);
-            this.lblAdresse.Name = "lblAdresse";
-            this.lblAdresse.Size = new System.Drawing.Size(60, 17);
-            this.lblAdresse.TabIndex = 14;
-            this.lblAdresse.Text = "Adresse";
-            this.lblAdresse.Visible = false;
             // 
             // frmMonReTe
             // 
@@ -313,6 +321,7 @@ namespace MonRepertoireTelephonique
             this.Controls.Add(this.gpbAjouterContact);
             this.Controls.Add(this.ptbPhoto);
             this.Controls.Add(this.gpbContacts);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMonReTe";
             this.Text = "Mon Répertoire Téléphonique";
             this.Load += new System.EventHandler(this.frmMonReTe_Load);
