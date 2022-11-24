@@ -432,6 +432,35 @@ namespace MonRepertoireTelephonique
         {
             ControleSaisieChiffre(e);
         }
+
+        private void lstContacts_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            // récupérer les contacts
+            Contacts unContact = lesContacts[e.Index];
+
+            // récupérer la couleur du bouton radio correspond
+            Color couleur;
+            if(unContact is Famille)
+            {
+                couleur =rdbFamille.ForeColor;
+            }
+            else if(unContact is Amis)
+            {
+                couleur = rdbAmis.ForeColor;
+            }
+            else
+            {
+                couleur = rdbProfessionnel.ForeColor;
+            }
+
+            //définier la couleur du pinceau
+            Brush myBrush = new SolidBrush(couleur);
+
+            e.Graphics.DrawString(lstContacts.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
+            e.DrawFocusRectangle();
+        }
     }
 }
     
