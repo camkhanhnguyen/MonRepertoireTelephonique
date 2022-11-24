@@ -433,6 +433,11 @@ namespace MonRepertoireTelephonique
             ControleSaisieChiffre(e);
         }
 
+        /// <summary>
+        /// définir la couleur dans la liste contact
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstContacts_DrawItem(object sender, DrawItemEventArgs e)
         {
             e.DrawBackground();
