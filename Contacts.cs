@@ -75,10 +75,6 @@ namespace MonRepertoireTelephonique
         public int CompareTo(Contacts obj)
         {
             int resultat = nom.CompareTo(obj.nom);
-            if (resultat == 0)
-            {
-                return prenom.CompareTo(obj.prenom);
-            }
             return resultat;
         }
 

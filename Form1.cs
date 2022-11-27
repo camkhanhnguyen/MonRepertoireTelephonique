@@ -2,6 +2,8 @@
  * titre: Mon Répertoire Téléphonique
  * desription: créer une list contact
  * auteur: Khanh NGUYEN
+ * date création: 24/11/2022
+ * date modification: 27/11/2022
  */
 using System;
 using System.Collections.Generic;
@@ -41,6 +43,11 @@ namespace MonRepertoireTelephonique
             btnNouveauContact.Enabled = true;
             btnNouveauContact.Focus();
 
+            // invisible le group recherche
+            gpbRecherche.Enabled = false;
+
+            // vider la zone recherche
+            ViderZoneRecherche();
         }
 
         /// <summary>
@@ -197,6 +204,7 @@ namespace MonRepertoireTelephonique
         {
             gpbAjouterContact.Enabled = true;
 
+
             // si clic sur bouton radio famille
             if (rdbFamille.Checked)
             {
@@ -207,7 +215,7 @@ namespace MonRepertoireTelephonique
                 }
                 else
                 {
-                    
+
                     TextInfo prenom = CultureInfo.CurrentCulture.TextInfo;
                     lesContacts.Add(new Famille(txtNom.Text.ToUpper(), prenom.ToTitleCase(txtPrenom.Text), txtTel.Text.Aggregate("", (result, c) => result += ((!string.IsNullOrEmpty(result) && (result.Length + 1) % 3 == 0) ? " " : "") + c.ToString()), ptbPhoto.Image));
                 }
@@ -251,6 +259,11 @@ namespace MonRepertoireTelephonique
 
             // recommence un nouveau procéddure
             DebutProgramme();
+
+            // lancer la recherche
+            gpbRecherche.Enabled = true;
+            btnNouveauContact.Enabled = false;
+
         }
 
         /// <summary>
@@ -265,6 +278,11 @@ namespace MonRepertoireTelephonique
             {
                 ViderAjouterContact();
             }
+            // lancer le programme
+            DebutProgramme();
+
+            // lancer la recherche
+            gpbRecherche.Enabled = true;
         }
 
         /// <summary>
@@ -352,6 +370,7 @@ namespace MonRepertoireTelephonique
                 ptbPhoto.Image = lesContacts[lstContacts.SelectedIndex].getPhoto();
                 gpbAjouterContact.Enabled = false;
             }
+            ViderZoneRecherche();
         }
 
         /// <summary>
@@ -447,11 +466,11 @@ namespace MonRepertoireTelephonique
 
             // récupérer la couleur du bouton radio correspond
             Color couleur;
-            if(unContact is Famille)
+            if (unContact is Famille)
             {
-                couleur =rdbFamille.ForeColor;
+                couleur = rdbFamille.ForeColor;
             }
-            else if(unContact is Amis)
+            else if (unContact is Amis)
             {
                 couleur = rdbAmis.ForeColor;
             }
@@ -466,8 +485,159 @@ namespace MonRepertoireTelephonique
             e.Graphics.DrawString(lstContacts.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
             e.DrawFocusRectangle();
         }
+
+        /// <summary>
+        /// recherche le nom
+        /// </summary>
+        private bool RechercheNom(string nom)
+        {
+            for (int k = 0; k < lstContacts.Items.Count; k++)
+            {
+                if (lesContacts[k].getNom().ToLower().Contains(nom.ToLower()))
+                {
+                    lstContacts.SelectedIndex = k;
+                    return true;
+                }
+            }
+            lstContacts.SelectedIndex = -1;
+            return false;
+        }
+
+        /// <summary>
+        /// recherche le prenom
+        /// </summary>
+        /// <param name="prenom"></param>
+        /// <returns></returns>
+        private bool RecherchePrenom(string prenom)
+        {
+            for (int k = 0; k < lstContacts.Items.Count; k++)
+            {
+                if (lesContacts[k].getPrenom().ToLower().Contains(prenom.ToLower()))
+                {
+                    lstContacts.SelectedIndex = k;
+                    return true;
+                }
+            }
+            lstContacts.SelectedIndex = -1;
+            return false;
+        }
+
+        /// <summary>
+        /// recherche le téléphone
+        /// </summary>
+        /// <param name="prenom"></param>
+        /// <returns></returns>
+        private bool RechercheTel(string tel)
+        {
+            for (int k = 0; k < lstContacts.Items.Count; k++)
+            {
+                if (lesContacts[k].getTel().ToLower().Contains(tel.ToLower()))
+                {
+                    lstContacts.SelectedIndex = k;
+                    return true;
+                }
+            }
+            lstContacts.SelectedIndex = -1;
+            return false;
+        }
+
+        /// <summary>
+        /// evénement TextChanged sur le txtRechercheTel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtRechercheTel_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRechercheTel.Text != "")
+            {
+                // vider autre zones
+                txtRecherchePrenom.Text = "";
+                txtRechercheNom.Text = "";
+
+                // lancer la recherche
+                RechercheTel(txtRechercheTel.Text);
+            }
+        }
+
+        /// <summary>
+        /// vider la groupe recherche
+        /// </summary>
+        private void ViderZoneRecherche()
+        {
+            txtRechercheNom.Text = "";
+            txtRecherchePrenom.Text = "";
+            txtRechercheTel.Text = "";
+        }
+
+        /// <summary>
+        /// contrôle la saisie du nom
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtRechercheNom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ControleSaisieLettre(e);
+        }
+
+        /// <summary>
+        /// contrôle la saisie du prenom
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtRecherchePrenom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ControleSaisieLettre(e);
+        }
+
+        /// <summary>
+        /// contrôle la saisie du téléphone
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void txtRechercheTel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ControleSaisieChiffre(e);
+        }
+
+        /// <summary>
+        /// recherche le nom
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtRechercheNom_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRechercheNom.Text != "")
+            {
+                // vider autre zones
+                txtRecherchePrenom.Text = "";
+                txtRechercheTel.Text = "";
+
+                // lancer la recherche
+                RechercheNom(txtRechercheNom.Text);
+            }
+        }
+
+        /// <summary>
+        /// recherche le prenom
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtRecherchePrenom_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRecherchePrenom.Text != "")
+            {
+                // vider autre zones
+                txtRechercheNom.Text = "";
+                txtRechercheTel.Text = "";
+
+                // lancer la recherche
+                RecherchePrenom(txtRecherchePrenom.Text);
+            }
+        }
     }
 }
-    
+
+
 
 
