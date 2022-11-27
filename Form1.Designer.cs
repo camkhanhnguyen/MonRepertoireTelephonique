@@ -53,9 +53,17 @@ namespace MonRepertoireTelephonique
             this.lblNom = new System.Windows.Forms.Label();
             this.lblPhoto = new System.Windows.Forms.Label();
             this.ptbPhoto = new System.Windows.Forms.PictureBox();
+            this.gpbRecherche = new System.Windows.Forms.GroupBox();
+            this.txtRechercheTel = new System.Windows.Forms.TextBox();
+            this.lblTelRecherche = new System.Windows.Forms.Label();
+            this.txtRecherchePrenom = new System.Windows.Forms.TextBox();
+            this.lblPrénomRecherche = new System.Windows.Forms.Label();
+            this.lblNomRecherche = new System.Windows.Forms.Label();
+            this.txtRechercheNom = new System.Windows.Forms.TextBox();
             this.gpbContacts.SuspendLayout();
             this.gpbAjouterContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbPhoto)).BeginInit();
+            this.gpbRecherche.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpbContacts
@@ -66,7 +74,7 @@ namespace MonRepertoireTelephonique
             this.gpbContacts.Controls.Add(this.btnNouveauContact);
             this.gpbContacts.Location = new System.Drawing.Point(411, 24);
             this.gpbContacts.Name = "gpbContacts";
-            this.gpbContacts.Size = new System.Drawing.Size(658, 656);
+            this.gpbContacts.Size = new System.Drawing.Size(658, 694);
             this.gpbContacts.TabIndex = 5;
             this.gpbContacts.TabStop = false;
             this.gpbContacts.Text = "Contact";
@@ -80,7 +88,7 @@ namespace MonRepertoireTelephonique
             this.lstContacts.Location = new System.Drawing.Point(6, 24);
             this.lstContacts.Name = "lstContacts";
             this.lstContacts.ScrollAlwaysVisible = true;
-            this.lstContacts.Size = new System.Drawing.Size(646, 564);
+            this.lstContacts.Size = new System.Drawing.Size(646, 596);
             this.lstContacts.TabIndex = 4;
             this.lstContacts.Click += new System.EventHandler(this.lstContacts_Click);
             this.lstContacts.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstContacts_DrawItem);
@@ -88,7 +96,7 @@ namespace MonRepertoireTelephonique
             // btnModifier
             // 
             this.btnModifier.Image = ((System.Drawing.Image)(resources.GetObject("btnModifier.Image")));
-            this.btnModifier.Location = new System.Drawing.Point(516, 600);
+            this.btnModifier.Location = new System.Drawing.Point(515, 638);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(54, 50);
             this.btnModifier.TabIndex = 2;
@@ -98,7 +106,7 @@ namespace MonRepertoireTelephonique
             // btnSupprimer
             // 
             this.btnSupprimer.Image = ((System.Drawing.Image)(resources.GetObject("btnSupprimer.Image")));
-            this.btnSupprimer.Location = new System.Drawing.Point(598, 600);
+            this.btnSupprimer.Location = new System.Drawing.Point(597, 638);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(54, 50);
             this.btnSupprimer.TabIndex = 3;
@@ -108,7 +116,7 @@ namespace MonRepertoireTelephonique
             // btnNouveauContact
             // 
             this.btnNouveauContact.Image = ((System.Drawing.Image)(resources.GetObject("btnNouveauContact.Image")));
-            this.btnNouveauContact.Location = new System.Drawing.Point(432, 601);
+            this.btnNouveauContact.Location = new System.Drawing.Point(431, 639);
             this.btnNouveauContact.Name = "btnNouveauContact";
             this.btnNouveauContact.Size = new System.Drawing.Size(52, 49);
             this.btnNouveauContact.TabIndex = 4;
@@ -132,9 +140,9 @@ namespace MonRepertoireTelephonique
             this.gpbAjouterContact.Controls.Add(this.lblPrenom);
             this.gpbAjouterContact.Controls.Add(this.txtNom);
             this.gpbAjouterContact.Controls.Add(this.lblNom);
-            this.gpbAjouterContact.Location = new System.Drawing.Point(26, 286);
+            this.gpbAjouterContact.Location = new System.Drawing.Point(26, 179);
             this.gpbAjouterContact.Name = "gpbAjouterContact";
-            this.gpbAjouterContact.Size = new System.Drawing.Size(360, 394);
+            this.gpbAjouterContact.Size = new System.Drawing.Size(360, 354);
             this.gpbAjouterContact.TabIndex = 7;
             this.gpbAjouterContact.TabStop = false;
             this.gpbAjouterContact.Text = "Ajouter Contact";
@@ -142,7 +150,7 @@ namespace MonRepertoireTelephonique
             // lblAdresse
             // 
             this.lblAdresse.AutoSize = true;
-            this.lblAdresse.Location = new System.Drawing.Point(15, 299);
+            this.lblAdresse.Location = new System.Drawing.Point(15, 256);
             this.lblAdresse.Name = "lblAdresse";
             this.lblAdresse.Size = new System.Drawing.Size(60, 17);
             this.lblAdresse.TabIndex = 14;
@@ -152,7 +160,7 @@ namespace MonRepertoireTelephonique
             // txtAdresse
             // 
             this.txtAdresse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdresse.Location = new System.Drawing.Point(75, 293);
+            this.txtAdresse.Location = new System.Drawing.Point(75, 250);
             this.txtAdresse.Name = "txtAdresse";
             this.txtAdresse.Size = new System.Drawing.Size(265, 27);
             this.txtAdresse.TabIndex = 13;
@@ -161,7 +169,7 @@ namespace MonRepertoireTelephonique
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(15, 245);
+            this.lblEmail.Location = new System.Drawing.Point(15, 213);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 17);
             this.lblEmail.TabIndex = 12;
@@ -171,7 +179,7 @@ namespace MonRepertoireTelephonique
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(75, 239);
+            this.txtEmail.Location = new System.Drawing.Point(75, 207);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(265, 27);
             this.txtEmail.TabIndex = 11;
@@ -194,7 +202,7 @@ namespace MonRepertoireTelephonique
             // btnAjouter
             // 
             this.btnAjouter.Image = global::MonRepertoireTelephonique.Properties.Resources.ajouter;
-            this.btnAjouter.Location = new System.Drawing.Point(211, 338);
+            this.btnAjouter.Location = new System.Drawing.Point(211, 293);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(54, 50);
             this.btnAjouter.TabIndex = 0;
@@ -204,7 +212,7 @@ namespace MonRepertoireTelephonique
             // btnAnnuler
             // 
             this.btnAnnuler.Image = global::MonRepertoireTelephonique.Properties.Resources.annuler;
-            this.btnAnnuler.Location = new System.Drawing.Point(286, 338);
+            this.btnAnnuler.Location = new System.Drawing.Point(286, 293);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(54, 50);
             this.btnAnnuler.TabIndex = 1;
@@ -241,7 +249,7 @@ namespace MonRepertoireTelephonique
             // lblTel
             // 
             this.lblTel.AutoSize = true;
-            this.lblTel.Location = new System.Drawing.Point(15, 194);
+            this.lblTel.Location = new System.Drawing.Point(15, 170);
             this.lblTel.Name = "lblTel";
             this.lblTel.Size = new System.Drawing.Size(28, 17);
             this.lblTel.TabIndex = 7;
@@ -250,7 +258,7 @@ namespace MonRepertoireTelephonique
             // txtTel
             // 
             this.txtTel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTel.Location = new System.Drawing.Point(75, 188);
+            this.txtTel.Location = new System.Drawing.Point(75, 164);
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(265, 27);
             this.txtTel.TabIndex = 6;
@@ -259,7 +267,7 @@ namespace MonRepertoireTelephonique
             // txtPrenom
             // 
             this.txtPrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrenom.Location = new System.Drawing.Point(75, 132);
+            this.txtPrenom.Location = new System.Drawing.Point(75, 121);
             this.txtPrenom.Name = "txtPrenom";
             this.txtPrenom.Size = new System.Drawing.Size(265, 27);
             this.txtPrenom.TabIndex = 5;
@@ -268,7 +276,7 @@ namespace MonRepertoireTelephonique
             // lblPrenom
             // 
             this.lblPrenom.AutoSize = true;
-            this.lblPrenom.Location = new System.Drawing.Point(15, 138);
+            this.lblPrenom.Location = new System.Drawing.Point(15, 127);
             this.lblPrenom.Name = "lblPrenom";
             this.lblPrenom.Size = new System.Drawing.Size(57, 17);
             this.lblPrenom.TabIndex = 4;
@@ -295,7 +303,7 @@ namespace MonRepertoireTelephonique
             // lblPhoto
             // 
             this.lblPhoto.AutoSize = true;
-            this.lblPhoto.Location = new System.Drawing.Point(146, 239);
+            this.lblPhoto.Location = new System.Drawing.Point(146, 144);
             this.lblPhoto.Name = "lblPhoto";
             this.lblPhoto.Size = new System.Drawing.Size(119, 17);
             this.lblPhoto.TabIndex = 8;
@@ -304,19 +312,92 @@ namespace MonRepertoireTelephonique
             // 
             // ptbPhoto
             // 
-            this.ptbPhoto.Location = new System.Drawing.Point(26, 25);
+            this.ptbPhoto.Location = new System.Drawing.Point(127, 25);
             this.ptbPhoto.Name = "ptbPhoto";
-            this.ptbPhoto.Size = new System.Drawing.Size(360, 231);
+            this.ptbPhoto.Size = new System.Drawing.Size(164, 148);
             this.ptbPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbPhoto.TabIndex = 6;
             this.ptbPhoto.TabStop = false;
+            // 
+            // gpbRecherche
+            // 
+            this.gpbRecherche.Controls.Add(this.txtRechercheTel);
+            this.gpbRecherche.Controls.Add(this.lblTelRecherche);
+            this.gpbRecherche.Controls.Add(this.txtRecherchePrenom);
+            this.gpbRecherche.Controls.Add(this.lblPrénomRecherche);
+            this.gpbRecherche.Controls.Add(this.lblNomRecherche);
+            this.gpbRecherche.Controls.Add(this.txtRechercheNom);
+            this.gpbRecherche.Location = new System.Drawing.Point(26, 550);
+            this.gpbRecherche.Name = "gpbRecherche";
+            this.gpbRecherche.Size = new System.Drawing.Size(360, 168);
+            this.gpbRecherche.TabIndex = 9;
+            this.gpbRecherche.TabStop = false;
+            this.gpbRecherche.Text = "Recherche";
+            // 
+            // txtRechercheTel
+            // 
+            this.txtRechercheTel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechercheTel.Location = new System.Drawing.Point(75, 126);
+            this.txtRechercheTel.Name = "txtRechercheTel";
+            this.txtRechercheTel.Size = new System.Drawing.Size(265, 27);
+            this.txtRechercheTel.TabIndex = 9;
+            this.txtRechercheTel.TextChanged += new System.EventHandler(this.txtRechercheTel_TextChanged);
+            this.txtRechercheTel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRechercheTel_KeyPress);
+            // 
+            // lblTelRecherche
+            // 
+            this.lblTelRecherche.AutoSize = true;
+            this.lblTelRecherche.Location = new System.Drawing.Point(15, 132);
+            this.lblTelRecherche.Name = "lblTelRecherche";
+            this.lblTelRecherche.Size = new System.Drawing.Size(28, 17);
+            this.lblTelRecherche.TabIndex = 8;
+            this.lblTelRecherche.Text = "Tel";
+            // 
+            // txtRecherchePrenom
+            // 
+            this.txtRecherchePrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRecherchePrenom.Location = new System.Drawing.Point(75, 83);
+            this.txtRecherchePrenom.Name = "txtRecherchePrenom";
+            this.txtRecherchePrenom.Size = new System.Drawing.Size(265, 27);
+            this.txtRecherchePrenom.TabIndex = 3;
+            this.txtRecherchePrenom.TextChanged += new System.EventHandler(this.txtRecherchePrenom_TextChanged);
+            this.txtRecherchePrenom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRecherchePrenom_KeyPress);
+            // 
+            // lblPrénomRecherche
+            // 
+            this.lblPrénomRecherche.AutoSize = true;
+            this.lblPrénomRecherche.Location = new System.Drawing.Point(15, 89);
+            this.lblPrénomRecherche.Name = "lblPrénomRecherche";
+            this.lblPrénomRecherche.Size = new System.Drawing.Size(57, 17);
+            this.lblPrénomRecherche.TabIndex = 2;
+            this.lblPrénomRecherche.Text = "Prénom";
+            // 
+            // lblNomRecherche
+            // 
+            this.lblNomRecherche.AutoSize = true;
+            this.lblNomRecherche.Location = new System.Drawing.Point(15, 47);
+            this.lblNomRecherche.Name = "lblNomRecherche";
+            this.lblNomRecherche.Size = new System.Drawing.Size(37, 17);
+            this.lblNomRecherche.TabIndex = 1;
+            this.lblNomRecherche.Text = "Nom";
+            // 
+            // txtRechercheNom
+            // 
+            this.txtRechercheNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRechercheNom.Location = new System.Drawing.Point(75, 41);
+            this.txtRechercheNom.Name = "txtRechercheNom";
+            this.txtRechercheNom.Size = new System.Drawing.Size(265, 27);
+            this.txtRechercheNom.TabIndex = 0;
+            this.txtRechercheNom.TextChanged += new System.EventHandler(this.txtRechercheNom_TextChanged);
+            this.txtRechercheNom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRechercheNom_KeyPress);
             // 
             // frmMonReTe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1081, 698);
+            this.ClientSize = new System.Drawing.Size(1081, 735);
+            this.Controls.Add(this.gpbRecherche);
             this.Controls.Add(this.lblPhoto);
             this.Controls.Add(this.gpbAjouterContact);
             this.Controls.Add(this.ptbPhoto);
@@ -329,6 +410,8 @@ namespace MonRepertoireTelephonique
             this.gpbAjouterContact.ResumeLayout(false);
             this.gpbAjouterContact.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbPhoto)).EndInit();
+            this.gpbRecherche.ResumeLayout(false);
+            this.gpbRecherche.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,6 +442,13 @@ namespace MonRepertoireTelephonique
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label lblAdresse;
         private System.Windows.Forms.TextBox txtAdresse;
+        private System.Windows.Forms.GroupBox gpbRecherche;
+        private System.Windows.Forms.Label lblNomRecherche;
+        private System.Windows.Forms.TextBox txtRechercheNom;
+        private System.Windows.Forms.TextBox txtRecherchePrenom;
+        private System.Windows.Forms.Label lblPrénomRecherche;
+        private System.Windows.Forms.TextBox txtRechercheTel;
+        private System.Windows.Forms.Label lblTelRecherche;
     }
 }
 
